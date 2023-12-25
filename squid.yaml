@@ -1,0 +1,25 @@
+manifestVersion: subsquid.io/v0.1
+name: sdk-next-issue-7
+version: 1
+description: 'The very first evm squid from manifest  '
+build: 
+deploy:
+  addons:
+    postgres:
+    rpc:
+      - arbitrum-one:http
+  processor:
+    cmd:
+      - sqd
+      - process:prod
+    env:
+      RPC_ENDPOINT: ${{ secrets.RPC_ENDPOINT }}
+#      SQD_DEBUG: '*'
+  api:
+    cmd:
+      - sqd
+      - serve:prod
+scale:
+  addons:
+    rpc:
+      max-rate: 20rps
